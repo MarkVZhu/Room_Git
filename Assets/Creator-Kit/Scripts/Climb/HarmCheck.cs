@@ -9,7 +9,7 @@ public class HarmCheck : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            SceneManager.LoadScene(2);
+            collision.GetComponent<PlayerHealth>().DamagePlayer(200);
         }
     }
 }

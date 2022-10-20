@@ -1,12 +1,18 @@
-A
-A speak 1111
 B
-B speak 2222
+Hello, sir. I hope you know where I can find some kind of medicine to relieve my serious headache. 
 A
-A speak 3333
+Er... I ... I know.
 B
-B speaks 44444
+So...? (He's so weird, dressing like a priest. Who is him?)
 A
-A speak 55555555
+I was just like you, and I hope you will know who I am. 
+A
+Well, there is a drug in the leftmost room you can use. 
 B
-B speaks 666666
+Ok, thank you! (Is it an illusion? Can he hear my thoughts?)
+A
+Don't worry. Anyway, you should know that maybe patience is the best way to get rid of it. 
+B
+Mhm...Ok. (What?)
+A
+Never mind, go and do the right thing. 

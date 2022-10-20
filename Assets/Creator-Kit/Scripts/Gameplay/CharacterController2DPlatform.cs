@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RPGM.Gameplay;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace RPGM.Gameplay
-{
     /// <summary>
     /// A simple controller for animating a 4 directional sprite using Physics.
     /// </summary>
@@ -36,8 +33,6 @@ namespace RPGM.Gameplay
 
         // The number of times this player has jumped since being grounded
         private int timesJumped = 0;
-        // Whether the player is in the middle of a jump right now
-        private bool jumping = false;
 
         public LayerMask WhatIsGround;
         public GameObject groundChecker; 
@@ -92,7 +87,6 @@ namespace RPGM.Gameplay
             if (isGround)
             {
                 //Debug.Log("Yes Ground: Jump");
-                jumping = true;
                 float time = 0;
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
                 rigidbody2D.AddForce(transform.up * jumpPower * powerMultiplier, ForceMode2D.Impulse);
@@ -101,7 +95,6 @@ namespace RPGM.Gameplay
                 {
                     time += Time.deltaTime;
                 }
-                jumping = false;
             }
         }
 
@@ -145,4 +138,3 @@ namespace RPGM.Gameplay
             pixelPerfectCamera = GameObject.FindObjectOfType<PixelPerfectCamera>();
         }
     }
-}

@@ -11,7 +11,16 @@ public class EnterDialog : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            enterDialogKey.SetActive(true);
+            if (this.name.Equals("DoorEnter"))
+            {
+                Debug.Log(State.Instance.canEnterPlatform);
+                if (State.Instance.canEnterPlatform)
+                {
+                    enterDialogKey.SetActive(true);
+                }
+            }
+            else
+                enterDialogKey.SetActive(true);
         }
     }
 

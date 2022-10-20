@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPGM.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,7 @@ public class DialogSystem : MonoBehaviour
         //textLable.text = textList[index];
         //index++;
         lineFinished = true;
+        FilpCanInput(GameObject.FindGameObjectWithTag("Player"), false);
         StartCoroutine(SetTextUI());
     }
 
@@ -39,6 +41,7 @@ public class DialogSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && index == textList.Count)
         {
             gameObject.SetActive(false);
+            FilpCanInput(GameObject.FindGameObjectWithTag("Player"), true);
             index = 0;
             return;
         }
@@ -56,9 +59,9 @@ public class DialogSystem : MonoBehaviour
         textList.Clear();
         index = 0;
 
-       var lineDate =  file.text.Split('\n');
+        var lineDate = file.text.Split('\n');
 
-        foreach(var line in lineDate)
+        foreach (var line in lineDate)
         {
             textList.Add(line);
         }
@@ -69,18 +72,21 @@ public class DialogSystem : MonoBehaviour
         lineFinished = false;
         textLable.text = "";
 
-        switch(textList[index].Trim().ToString())
+        if (face01 && face02)
         {
-            case  "A":
-                face02.SetActive(false);
-                face01.SetActive(true);
-                index++;
-                break;
-            case "B":
-                face01.SetActive(false);
-                face02.SetActive(true);
-                index++;
-                break;
+            switch (textList[index].Trim().ToString())
+            {
+                case "A":
+                    face02.SetActive(false);
+                    face01.SetActive(true);
+                    index++;
+                    break;
+                case "B":
+                    face01.SetActive(false);
+                    face02.SetActive(true);
+                    index++;
+                    break;
+            }
         }
 
         for (int i = 0; i < textList[index].Length; i++)
@@ -89,7 +95,29 @@ public class DialogSystem : MonoBehaviour
 
             yield return new WaitForSeconds(textSpeed);
         }
+
         lineFinished = true;
-        index++; 
+        index++;
+    }
+
+    void FilpCanInput(GameObject character, bool tf)
+    {
+        character.GetComponent<CharacterController2D>().enabled = tf;
+        character.GetComponent<Animator>().enabled = tf;
+
+        if (!tf)
+        {
+            character.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+        else
+        {
+            character.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            character.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            if (this.name.Equals("PriestPanel"))
+            {
+                State.Instance.canEnterPlatform = true;
+            }
+        }
+
     }
 }
