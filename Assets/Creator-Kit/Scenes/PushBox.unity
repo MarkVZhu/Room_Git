@@ -5239,7 +5239,7 @@ MonoBehaviour:
   face02: {fileID: 837674689}
   textFile: {fileID: 4900000, guid: aa652bd4abfcc5f4e9b53ce790f3681f, type: 3}
   index: 0
-  textSpeed: 0.05
+  textSpeed: 0.02
 --- !u!114 &1122798326
 MonoBehaviour:
   m_ObjectHideFlags: 0

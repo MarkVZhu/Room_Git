@@ -9,6 +9,7 @@ namespace RPGM.Gameplay
         public AudioClip audioClip;
         [Range(0.0f, 1.0f)] public float audioVolume;
         public float crossFadeTime = 3;
+        private bool stopUpdate = false;
 
         AudioSource audioSourceA, audioSourceB;
         float audioSourceAVolumeVelocity, audioSourceBVolumeVelocity;
@@ -24,7 +25,10 @@ namespace RPGM.Gameplay
 
         void Update()
         {
-            audioSourceA.volume = Mathf.SmoothDamp(audioSourceA.volume, audioVolume, ref audioSourceAVolumeVelocity, crossFadeTime, 1);
+            if (!stopUpdate)
+            {
+                audioSourceA.volume = Mathf.SmoothDamp(audioSourceA.volume, audioVolume, ref audioSourceAVolumeVelocity, crossFadeTime, 1);
+            }
         }
 
         void OnEnable()
@@ -36,6 +40,12 @@ namespace RPGM.Gameplay
             audioSourceA.outputAudioMixerGroup = audioMixerGroup;
             audioSourceA.volume = 0;
             audioSourceA.Play();
+            Invoke("stopUp", crossFadeTime * 2);
+        }
+
+        void stopUp()
+        {
+            stopUpdate = true;
         }
     }
 }
