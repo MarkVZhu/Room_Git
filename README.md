@@ -18,6 +18,9 @@ Unity Editor version: 2020.3.25f1c1
 If you want to examine the project file of the game, you should find assets in the directory below (Asset/Creator-Kit). In detail, you can find art materials including pictures and animations in **Art** fold; find audio resources including music and sounds in **Audio** fold; find some utilitarian prefabs in **Prefabs** fold; find different levels in **Scenes** fold; find codes in **Scripts** fold.  
 <div align=center><img src="https://user-images.githubusercontent.com/61057370/199515698-a74eb5f2-20b1-4af4-b005-b4a44c8d697e.png" width="500" height="450" alt="ROOM"/></div>
 
+## Desciption
+Due to limited space, I only describe one important part of the code sample in this project. The scripts in **PlayerState** folder record the state of the character and determine the storyline. In detail, **State** class is a singleton, and it contains the character's health and states influenced by the player's operations. The other two scripts detect the player's choices and decide the text content on the UI. 
+
 ## Play 
 If you want to play ROOM online, please follow this address https://mark-zf.itch.io/room
 
